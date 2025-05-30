@@ -14,7 +14,7 @@ def test_root_route():
 def test_create_author():
     response = client.post(
         "/authors",
-        json={"id":3001,"name": "Carlos Rodriguez Garcia", "bio": "peruan author"},
+        json={"id":5550,"name": "Eduard Gamez", "bio": "peruan author"},
         auth=("admin", "password123")
     )
     assert response.status_code == 200
