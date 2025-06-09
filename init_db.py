@@ -4,7 +4,10 @@ from models import AuthorDB as Author, BookDB as Book
 
 def init():
     print("Creando tablas en la base de datos...")
-    Base.metadata.create_all(bind=engine)
+    #Base.metadata.create_all(bind=engine)
+    #Base.metadata.bind = engine
+    Base.metadata.create_all(bind=engine)  # <-- Esta línea crea las tablas si no existen
+
     print("✅ Tablas creadas exitosamente.")
 
 def check_and_create_tables():

@@ -21,9 +21,9 @@ from init_db import init, check_and_create_tables
 # Crear las tablas
 #Base.metadata.create_all(bind=engine)
 
-#init()  # Inicializar la base de datos
+init()  # Inicializar la base de datos
 
-check_and_create_tables()  # Verificar y crear tablas si no existen
+#check_and_create_tables()  # Verificar y crear tablas si no existen
 
 # Crear las tablas de Author y Book
 #Author.Base.metadata.create_all(bind=engine)

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  api_libros_contenedores:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: libros_api
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:root@libros_db:3306/biblioteca
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    container_name: libros_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: biblioteca
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

@@ -7,9 +7,9 @@ url = "http://127.0.0.1:8000/authors/"
 # Datos del autor
 # payload 
 author = {
-    "id" : 77,
-    "name" : "Javier Fabian",
-    "bio" : "Escritor europeo, autor de Ray1uela."
+    "id" : 19920328,
+    "name" : "Steven Rodriguez",
+    "bio" : "Escritor nuevo, autor de libros de arte."
 }
 
 # Hacer la solicitud con autenticación básica
