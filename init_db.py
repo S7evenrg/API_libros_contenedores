@@ -1,7 +1,15 @@
 from sqlalchemy import inspect
 from database import Base, engine
 from models import AuthorDB as Author, BookDB as Book
+from database import wait_for_mysql
 
+
+def init():
+    wait_for_mysql()  # 👈 Agregado
+    print("Creando tablas en la base de datos...")
+    Base.metadata.create_all(bind=engine)
+
+"""
 def init():
     print("Creando tablas en la base de datos...")
     #Base.metadata.create_all(bind=engine)
@@ -9,7 +17,7 @@ def init():
     Base.metadata.create_all(bind=engine)  # <-- Esta línea crea las tablas si no existen
 
     print("✅ Tablas creadas exitosamente.")
-
+"""
 def check_and_create_tables():
     inspector = inspect(engine)
     existing_tables = inspector.get_table_names()
@@ -28,3 +36,4 @@ def check_and_create_tables():
 
     Base.metadata.create_all(bind=engine)
     print("✅ Proceso completado.")
+   

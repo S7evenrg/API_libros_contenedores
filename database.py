@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import pymysql
+import time
 
 #DATABASE_URL = "sqlite:///./database/biblioteca.db"
 MYSQL_USER = "root"
@@ -28,5 +30,26 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def wait_for_mysql():
+    print("⏳ Esperando que MySQL esté disponible...")
+    for i in range(10):
+        try:
+            conn = pymysql.connect(
+                host="libros_db",  # Usa el nombre del servicio en docker-compose
+                user="root",
+                password="root",
+                database="biblioteca",
+                port=3306
+            )
+            conn.close()
+            print("✅ MySQL está listo.")
+            return
+        except pymysql.MySQLError as e:
+            print(f"Intento {i+1}/10 fallido: {e}")
+            time.sleep(2)
+    raise Exception("❌ No se pudo conectar a MySQL después de 10 intentos.")
+
 
 #NOTA: no usar db = get_db(), se debe usar siempre el yield
